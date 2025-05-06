@@ -1,0 +1,23 @@
+Name	Start Time	End Time	Speaker	Content
+John Doe	5/5/2025 10:00:00 AM	5/5/2025 10:00:10 AM	John Doe	Good morning everyone, let’s get started with today’s sync.
+Jane Smith	5/5/2025 10:00:11 AM	5/5/2025 10:00:20 AM	Jane Smith	Hi John. I’ve got the report ready and can walk through it.
+Michael Lee	5/5/2025 10:00:21 AM	5/5/2025 10:00:30 AM	Michael Lee	Just a heads-up, I might have to drop early for another call.
+John Doe	5/5/2025 10:00:31 AM	5/5/2025 10:00:45 AM	John Doe	No problem, Michael. Let’s move quickly through the key points.
+Jane Smith	5/5/2025 10:00:46 AM	5/5/2025 10:01:05 AM	Jane Smith	Starting with the marketing report, we’ve seen a 12% increase in engagement.
+Michael Lee	5/5/2025 10:01:06 AM	5/5/2025 10:01:20 AM	Michael Lee	That’s great. Does that align with our LinkedIn traffic?
+Jane Smith	5/5/2025 10:01:21 AM	5/5/2025 10:01:40 AM	Jane Smith	Yes, LinkedIn and Twitter were the top performers for the week.
+John Doe	5/5/2025 10:01:41 AM	5/5/2025 10:01:55 AM	John Doe	Perfect. Let’s highlight that in the weekly client update.
+Sarah Kim	5/5/2025 10:01:56 AM	5/5/2025 10:02:10 AM	Sarah Kim	Quick question — are we including regional breakdowns this time?
+Jane Smith	5/5/2025 10:02:11 AM	5/5/2025 10:02:25 AM	Jane Smith	Good point, Sarah. Yes, we have North America and EMEA data.
+John Doe	5/5/2025 10:02:26 AM	5/5/2025 10:02:40 AM	John Doe	Thanks. Let’s move to the dev update next. Michael?
+Michael Lee	5/5/2025 10:02:41 AM	5/5/2025 10:03:00 AM	Michael Lee	We resolved three of the five open issues. The final two are backend-related.
+John Doe	5/5/2025 10:03:01 AM	5/5/2025 10:03:15 AM	John Doe	Any blockers we should escalate?
+Michael Lee	5/5/2025 10:03:16 AM	5/5/2025 10:03:35 AM	Michael Lee	No, we just need some more time. They’re a bit complex but under control.
+Sarah Kim	5/5/2025 10:03:36 AM	5/5/2025 10:03:50 AM	Sarah Kim	Are those related to the API latency from last week?
+Michael Lee	5/5/2025 10:03:51 AM	5/5/2025 10:04:05 AM	Michael Lee	Exactly. We’re optimizing the data caching layer.
+Jane Smith	5/5/2025 10:04:06 AM	5/5/2025 10:04:25 AM	Jane Smith	That should help with the response times our users flagged in feedback.
+John Doe	5/5/2025 10:04:26 AM	5/5/2025 10:04:40 AM	John Doe	Thanks everyone. Let’s aim to close those out by Friday.
+Sarah Kim	5/5/2025 10:04:41 AM	5/5/2025 10:04:55 AM	Sarah Kim	Before we wrap — do we have the budget numbers for Q3 finalized?
+Jane Smith	5/5/2025 10:04:56 AM	5/5/2025 10:05:15 AM	Jane Smith	Yes, I’ll send out the final version right after this meeting.
+Michael Lee	5/5/2025 10:05:16 AM	5/5/2025 10:05:30 AM	Michael Lee	Great. I’ll review and flag any concerns before EOD.
+John Doe	5/5/2025 10:05:31 AM	5/5/2025 10:05:45 AM	John Doe	Thanks everyone. That’s it for today’s standup. Have a productive day!
