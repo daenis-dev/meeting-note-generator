@@ -1,3 +1,7 @@
+## 🌎 Overview
+
+Generates meeting notes from Microsoft Teams transcripts.
+
 ## 📝 Setup Instructions
 
 ### 📥 Download the Application
