@@ -65,4 +65,8 @@
 docker compose build --no-cache && docker compose up
 ```
 
-The API will be available at: [http://localhost:8080](http://localhost:8080)
+The API is available at: [http://localhost:8080/generate-meeting-notes](http://localhost:8080/generate-meeting-notes), and accepts the file name as a query parameter.
+
+- For example, using the browser to navigate to `http://localhost:8080/generate-meeting-notes?file-name=Meeting_Transcript_May_5_2025.txt` will generate meeting notes for the file named `Meeting_Transcript_May_5_2025.txt`
+
+The generated notes will be available within the Docker container, under the `/app` directory.
