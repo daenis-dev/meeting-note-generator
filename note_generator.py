@@ -1,22 +1,32 @@
 from openai import OpenAI
 import os
+import re
 
 class NoteGenerator:
     
     def get_notes_for_transcription_file(self, file_name):
         summaries = {}
 
-        transcript = self.load_file(file_name)
+        transcript = self.clean_vtt(self.load_file(file_name))
 
         transcript_sections = self.divide_transcript_into_groups_of_four_thousand_characters(transcript)
 
         for idx, transcript_section in enumerate(transcript_sections):
             summaries[idx + 1] = self.get_summary_for_transcript_section(transcript_section)
 
-        output_file_name = file_name.replace('.txt', '') + '_summary.txt'
+        output_file_name = file_name.replace('.vtt', '') + '_summary.txt'
         with open(output_file_name, 'w', encoding='utf-8') as f:
             for idx, summary in summaries.items():
                 f.write(f"{idx}) {summary}\n\n")
+
+
+    def clean_vtt(self, raw_text):
+        raw_text = raw_text.replace("WEBVTT", "").strip()
+        
+        cleaned_text = re.sub(r'\d{2}:\d{2}:\d{2}\.\d{3} --> \d{2}:\d{2}:\d{2}\.\d{3}', '', raw_text)
+        
+        lines = [line.strip() for line in cleaned_text.splitlines() if line.strip()]
+        return '\n'.join(lines)
     
     def load_file(self, file_name):
         with open(file_name, 'r', encoding='utf-8') as f:
