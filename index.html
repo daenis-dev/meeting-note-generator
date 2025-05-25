@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aerhub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background: black;
+        color: white;
+        text-align: center;
+    }
+
+    select, button {
+        padding: 15px;
+        font-size: 16px;
+        margin-top: 10px;
+        border-radius: 8px;
+        background-color: white;
+    }
+
+    #results {
+        margin-top: 30px;
+        text-align: left;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    #transcriptSelect {
+        text-align: center;
+        padding-right: 30px; /* extra space for arrow */
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20fill%3D%22black%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M7%2010l5%205%205-5z%22/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 16px;
+    }
+
+    .note {
+        position: relative;
+        background-color: rgba(67, 67, 67, 0.3);
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    .note-number {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 0.9em;
+        font-weight: bold;
+        color: #00FFFF;
+        font-family: 'Courier New', Courier, monospace;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+    .note-content {
+        margin-top: 30px;
+    }
+  </style>
+
+</head>
+<body>
+  <h1 style="padding-top: 40px;">DABI</h1>
+  <h3 style="margin-top: 0px;">Please select a transcript</h3>
+
+  <div>
+    <select id="transcriptSelect">
+      <option value="">-- Loading transcripts... --</option>
+    </select>
+    <br />
+    <div style="padding-top: 20px;">
+        <button onclick="submitTranscript()">Generate Notes</button>
+    </div>
+  </div>
+
+  <div id="results"></div>
+
+  <script>
+    async function fetchTranscriptFileNames() {
+      try {
+        const response = await fetch('http://localhost:8080/transcripts/file-names');
+        const data = await response.json();
+        const select = document.getElementById('transcriptSelect');
+        select.innerHTML = '<option value="">Choose a File</option>';
+        data.files.forEach(file => {
+          const option = document.createElement('option');
+          option.value = file;
+          option.textContent = file;
+          select.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error fetching transcript file names:', error);
+      }
+    }
+
+    async function submitTranscript() {
+      const selectedFile = document.getElementById('transcriptSelect').value;
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '';
+
+      if (!selectedFile) {
+        alert('Please select a transcript file.');
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:8080/generate-meeting-notes?file-name=${encodeURIComponent(selectedFile)}`);
+        const data = await response.json();
+
+        if (data.summaries && data.summaries.length > 0) {
+          data.summaries.forEach((note, index) => {
+            const div = document.createElement('div');
+            div.className = 'note';
+            div.innerHTML = `
+                <div class="note-number">${index + 1}</div>
+                <div class="note-content">${note}</div>
+                `;
+
+            resultsDiv.appendChild(div);
+          });
+        } else {
+          resultsDiv.innerHTML = '<p>No summaries returned.</p>';
+        }
+      } catch (error) {
+        console.error('Error generating notes:', error);
+        resultsDiv.innerHTML = '<p>Error generating notes. Please check the server.</p>';
+      }
+    }
+
+    fetchTranscriptFileNames();
+  </script>
+</body>
+</html>

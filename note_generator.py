@@ -18,6 +18,8 @@ class NoteGenerator:
         with open(output_file_name, 'w', encoding='utf-8') as f:
             for idx, summary in summaries.items():
                 f.write(f"{idx}) {summary}\n\n")
+        
+        return [summary for _, summary in sorted(summaries.items())]
 
 
     def clean_vtt(self, raw_text):
@@ -29,7 +31,7 @@ class NoteGenerator:
         return '\n'.join(lines)
     
     def load_file(self, file_name):
-        with open(file_name, 'r', encoding='utf-8') as f:
+        with open('transcripts/' + file_name, 'r', encoding='utf-8') as f:
             return f.read()
     
     def divide_transcript_into_groups_of_four_thousand_characters(self, file):

@@ -10,6 +10,17 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     networks:
       - meeting-note-generator-net
+
+  meeting-note-generator-ui:
+      build:
+        dockerfile: UI_Dockerfile
+      ports:
+        - "4200:4200"
+      depends_on:
+        - meeting-note-generator-api
+      networks:
+        - meeting-note-generator-net
+
 networks:
   meeting-note-generator-net:
     driver: bridge
